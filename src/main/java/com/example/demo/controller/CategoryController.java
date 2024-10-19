@@ -18,8 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.CategoryDto;
 import com.example.demo.dto.CategoryResponse;
 import com.example.demo.entity.Category;
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.service.CategoryService;
 
+import lombok.extern.slf4j.Slf4j;
+
+
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/category")
 public class CategoryController {
@@ -43,6 +48,8 @@ public class CategoryController {
 	@GetMapping("/")
 	public ResponseEntity<?> getAllCategory()
 	{
+		//String nm=null;
+		//nm.toUpperCase();
 		List<CategoryDto> allCategory=categoryService.getAllCategory();
 		if(CollectionUtils.isEmpty(allCategory))
 		{
@@ -63,16 +70,30 @@ public class CategoryController {
 		}
 	}
 	@GetMapping("/{id}")
-	public ResponseEntity<?> getCategoryDetailsById(@PathVariable Integer id)
+	public ResponseEntity<?> getCategoryDetailsById(@PathVariable Integer id) throws Exception
 	{
+	//	try {
+	//		CategoryDto categoryDto = categoryService.getCategoryById(id);
+		//	if(ObjectUtils.isEmpty(categoryDto))
+			//{
+		    //return new ResponseEntity<>("Category not found with id" +id,HttpStatus.NOT_FOUND);
+			//}
+			 //return new ResponseEntity<>(categoryDto,HttpStatus.OK);
+	//	}catch (ResourceNotFoundException e) {
+			//use for log4j
+		//	log.error("Controller :: getCategoryDetailsById ::",e.getMessage());
+		//	return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+		//}catch (Exception e) {
+		//	return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+		//}
+		
 		CategoryDto categoryDto = categoryService.getCategoryById(id);
 		if(ObjectUtils.isEmpty(categoryDto))
 		{
-	    return new ResponseEntity<>("Category not found with id" +id,HttpStatus.NOT_FOUND);
+	    return new ResponseEntity<>("Internal server Error" +id,HttpStatus.NOT_FOUND);
 		}
-		
-    return new ResponseEntity<>(categoryDto,HttpStatus.OK);
-	}
+		 return new ResponseEntity<>(categoryDto,HttpStatus.OK);
+}
 	//delete data is tempary in database save
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteCategoryById(@PathVariable Integer id)
