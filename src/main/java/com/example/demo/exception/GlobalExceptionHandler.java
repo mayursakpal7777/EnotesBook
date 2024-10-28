@@ -6,13 +6,14 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.example.demo.util.ValidationException;
+
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -61,6 +62,20 @@ public class GlobalExceptionHandler {
 	{
 		//log.error("GlobalException ::handleResourceNotFoundException ::",e.getMessage());
 		return new ResponseEntity<>(e.getErrors(),HttpStatus.BAD_REQUEST);
+		
+	}
+	@ExceptionHandler(ExitsDataException.class)
+	public ResponseEntity<?>handleExistDataException(ExitsDataException e)
+	{
+		//log.error("GlobalException ::handleResourceNotFoundException ::",e.getMessage());
+		return new ResponseEntity<>(e.getMessage(),HttpStatus.CONFLICT);
+		
+	}
+	@ExceptionHandler(HttpMessageNotReadableException.class)
+	public ResponseEntity<?>handleHttpMessageNotReadableException(HttpMessageNotReadableException e)
+	{
+		//log.error("GlobalException ::handleResourceNotFoundException ::",e.getMessage());
+		return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		
 	}
 

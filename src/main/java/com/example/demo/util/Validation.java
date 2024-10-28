@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 
 import com.example.demo.dto.CategoryDto;
+import com.example.demo.exception.ValidationException;
 
 @Component
 public class Validation {
@@ -23,10 +24,10 @@ public class Validation {
 		if(ObjectUtils.isEmpty(categoryDto.getName())){
 			error.put("name","name field is empaty or null");
 		}else {
-			if(categoryDto.getName().length()<10){
-				error.put("name","name length min 10");
+			if(categoryDto.getName().length() < 3){
+				error.put("name","name length min 3");
 			}
-			if(categoryDto.getName().length()>50){
+			if(categoryDto.getName().length() >50){
 				error.put("name","name length max 50");
 			}
 		}

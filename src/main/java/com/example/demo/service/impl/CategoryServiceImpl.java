@@ -13,6 +13,7 @@ import org.springframework.util.ObjectUtils;
 import com.example.demo.dto.CategoryDto;
 import com.example.demo.dto.CategoryResponse;
 import com.example.demo.entity.Category;
+import com.example.demo.exception.ExitsDataException;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.service.CategoryService;
@@ -41,6 +42,14 @@ public class CategoryServiceImpl implements CategoryService{
 		
 		//validation cheking
 	 validation.categoryValidation(categoryDto);
+	 
+	 //cheack catehory exits or not
+	 Boolean exits=categoryRepository.existsByName(categoryDto.getName().trim());
+	 if(exits)
+	 {
+		 //throw error
+		 throw new ExitsDataException("Category alerdy exist");
+	 }
      Category category = mapper.map(categoryDto,Category.class);
      //update category logic
      if(ObjectUtils.isEmpty(category.getId()))

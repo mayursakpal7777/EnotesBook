@@ -17,4 +17,8 @@ public interface CategoryRepository extends JpaRepository<Category, Integer>{
 
 	List<Category> findByIsDeletedFalse();
 
+	//Boolean existByName(String trim);
+
+	Boolean existsByName(String trim);
+
 }
