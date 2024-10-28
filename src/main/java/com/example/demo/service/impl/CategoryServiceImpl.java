@@ -40,14 +40,14 @@ public class CategoryServiceImpl implements CategoryService{
 		//category.setIsActive(categoryDto.getIsActive());
 		
 		//validation cheking
-		validation.categoryValidation(categoryDto);
+	 validation.categoryValidation(categoryDto);
      Category category = mapper.map(categoryDto,Category.class);
      //update category logic
      if(ObjectUtils.isEmpty(category.getId()))
      {
     	  
     	   category.setIsDeleted(false);
-    	   category.setCreatedBy(1);
+    	 //  category.setCreatedBy(1);
     	   category.setCreatedOn(new Date()); 
      }else {
     	 updateCategory(category);
@@ -73,8 +73,8 @@ public class CategoryServiceImpl implements CategoryService{
 			category.setIsDeleted(existCategory.getIsDeleted());
 			
 			//update value set
-			category.setUpdatedBy(1);
-			category.setUpdatedOn(new Date());
+			//category.setUpdatedBy(1);
+			//category.setUpdatedOn(new Date());
 			
 		}
 		

@@ -4,7 +4,10 @@ package com.example.demo.entity;
 
 import java.util.Date;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,6 +21,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+@EntityListeners(AuditingEntityListener.class)//auding time and crete by 
 public class Category extends BaseModel{
 	
 	@Id
@@ -27,10 +31,12 @@ public class Category extends BaseModel{
 	private String description;
 	private Boolean isActive;
 	private Boolean isDeleted;
-	private Integer createdBy;
-	private Date createdOn;
-	private Integer updatedBy;
-	private Date updatedOn;
+	//private Boolean isActive;
+	//private Boolean isDeleted;
+	//private Integer createdBy;
+	//private Date createdOn;
+	//private Integer updatedBy;
+	//private Date updatedOn;
 	
 
 }
