@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 
 import com.example.demo.dto.CategoryDto;
+import com.example.demo.exception.ValidationException;
 
 @Component
 public class Validation {

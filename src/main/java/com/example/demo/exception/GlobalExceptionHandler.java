@@ -12,11 +12,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-<<<<<<< Updated upstream
-import com.example.demo.util.ValidationException;
-=======
 import com.example.demo.util.CommonUtil;
->>>>>>> Stashed changes
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -70,15 +66,8 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(error,HttpStatus.BAD_REQUEST);
 		
 	}*/
-<<<<<<< Updated upstream
-	@ExceptionHandler(ValidationException.class)
-	public ResponseEntity<?>handleValidationException(ValidationException e)
-	{
-		//log.error("GlobalException ::handleResourceNotFoundException ::",e.getMessage());
-		return new ResponseEntity<>(e.getErrors(),HttpStatus.BAD_REQUEST);
-		
-	}
-=======
+
+	
 	
 	/*
 	@ExceptionHandler(ExitsDataException.class)
@@ -95,5 +84,5 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		*/
 	}
->>>>>>> Stashed changes
+
 
